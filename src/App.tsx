@@ -81,7 +81,7 @@ export default function App() {
                 transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
                 className="absolute inset-0 flex items-center justify-center font-heading text-xs font-bold tracking-[0.2em] text-charcoal"
               >
-                KR
+                DD
               </motion.div>
               <motion.span
                 initial={{ opacity: 0, y: 10 }}
@@ -89,7 +89,7 @@ export default function App() {
                 transition={{ delay: 0.3, duration: 0.5 }}
                 className="mt-6 font-heading text-[10px] font-bold tracking-[0.3em] text-gold uppercase"
               >
-                KANIMOZHI R
+                DEEPIKA D
               </motion.span>
             </div>
           </motion.div>
@@ -122,10 +122,10 @@ export default function App() {
               {/* Copyright */}
               <div className="text-center md:text-left mb-6 md:mb-0">
                 <span className="font-heading text-sm font-bold tracking-[0.25em] text-gold block mb-2">
-                  KANIMOZHI R
+                  DEEPIKA D
                 </span>
                 <span className="text-xs text-warmgray tracking-wide">
-                  &copy; {new Date().getFullYear()} Kanimozhi R. All rights reserved.
+                  &copy; {new Date().getFullYear()} Deepika D. All rights reserved.
                 </span>
               </div>
 

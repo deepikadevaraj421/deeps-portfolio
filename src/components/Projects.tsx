@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, ArrowRight, X, Cpu } from 'lucide-react';
-import signifyImg from '../assets/project_signify.jpeg';
+import signifyImg from '../assets/signify_new.png';
 import lifetraxImg from '../assets/project_lifetrax.jpeg';
 import expenseImg from '../assets/project_expense.jpeg';
+import quizCortexImg from '../assets/quizcortex.png';
 import roadsosImg from '../assets/project_roadsos.jpeg';
+import buddytostudyImg from '../assets/buddytostudy.png';
 
 interface Project {
   id: string;
@@ -39,8 +41,8 @@ export default function Projects() {
       ],
       tech: ['React.js', 'Python', 'AWS', 'MediaPipe'],
       image: signifyImg,
-      github: 'https://github.com/INDHUJA007-HUB/Signify',
-      live: 'https://signify-signlanguage-converter.onrender.com/dashboard/texttosign',
+      github: 'https://github.com/deepikadevaraj421/signify-signlanguage-converter',
+      live: 'https://signify-signlanguage-converter.onrender.com',
       architecture: {
         title: 'Signify Pipeline Architecture',
         steps: [
@@ -67,7 +69,7 @@ export default function Projects() {
       ],
       tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'Google Maps API', 'AWS'],
       image: roadsosImg,
-      github: 'https://github.com/kanimozhi2630/RoadSafety-Project',
+      github: 'https://github.com/deepikadevaraj421/RoadSafety-Project',
       live: 'https://intelsos-frontend.onrender.com/',
       architecture: {
         title: 'Road SOS Architecture',
@@ -92,7 +94,7 @@ export default function Projects() {
       ],
       tech: ['React', 'Spring Boot', 'PostgreSQL', 'AWS', 'TensorFlow Lite'],
       image: lifetraxImg,
-      github: 'https://github.com/kanimozhi2630/Digital-Health-Record',
+      github: 'https://github.com/deepikadevaraj421/Digital-Health-Record',
       live: '#',
       architecture: {
         title: 'Life Trax Distributed Architecture',
@@ -105,32 +107,50 @@ export default function Projects() {
       }
     },
     {
-      id: 'expensetracker',
-      title: 'Expense Tracker',
-      subtitle: 'Real-Time Collaboration',
-      description: 'A collaborative expense management application that helps groups manage budgets, track expenses, communicate in real-time, analyze spending patterns, and split expenses fairly.',
+      id: 'quizcortex',
+      title: 'Quiz Cortex',
+      subtitle: 'Online Quiz Management System',
+      description: 'Architected and delivered a full-stack MERN application enabling teachers to create quizzes and students to attempt them online. Automated quiz evaluation and result generation, reducing manual assessment effort by 50%.',
       details: [
-        'JWT Authentication',
-        'User Registration & Login',
-        'Dashboard with group statistics',
-        'Group Creation & Budget Management',
-        'Expense Tracking',
-        'Real-Time Group Chat',
-        'Expense Analysis (Pie & Bar Charts)',
-        'Expense Splitting & Settlement',
-        'Budget Alerts'
+        'Implemented JWT-based authentication and role-based access control for secure user management.',
+        'Automated quiz evaluation and result generation, reducing manual assessment effort by 50%.',
+        'Deployed frontend on Vercel and backend on Render.'
       ],
-      tech: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Socket.IO', 'Chart.js'],
-      image: expenseImg,
-      github: 'https://github.com/kanimozhi2630/Expense-Tracker',
-      live: 'https://expense-tracker-4-vhfk.onrender.com',
+      tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'JWT', 'Vercel', 'Render'],
+      image: quizCortexImg,
+      github: 'https://github.com/deepikadevaraj421/mern-project-quizz-app-.git',
+      live: 'https://quiz-cortex-quiz-app-mern-stack-fro.vercel.app/',
       architecture: {
-        title: 'Expense Tracker Architecture',
+        title: 'Quiz Cortex Architecture',
         steps: [
-          { name: 'React Client', desc: 'Interactive dashboard with Chart.js analytics visualizations.', type: 'web' },
-          { name: 'Real-Time Communication', desc: 'Socket.IO server enabling live group chat and instant updates.', type: 'web' },
-          { name: 'Express API Server', desc: 'RESTful API secured with JWT authentication middleware.', type: 'web' },
-          { name: 'Data Storage', desc: 'MongoDB for managing users, groups, budgets, and expenses.', type: 'cloud' }
+          { name: 'React Client', desc: 'Interactive frontend for students and teachers.', type: 'web' },
+          { name: 'Access Control', desc: 'JWT role-based authentication and security.', type: 'web' },
+          { name: 'Express API Server', desc: 'Backend handling automated evaluation and quiz generation.', type: 'web' },
+          { name: 'Data Storage', desc: 'MongoDB for user data and assessment records.', type: 'cloud' }
+        ]
+      }
+    },
+    {
+      id: 'buddytostudy',
+      title: 'Buddy to Study',
+      subtitle: 'Behavioral Clustering and Hybrid Recommendation System',
+      description: 'Developed a full-stack web application that helps students find compatible study partners using data-driven recommendations. The system analyzes student attributes such as subject interests, skill levels, availability, and learning behavior.',
+      details: [
+        'Implemented behavioral clustering techniques and a hybrid recommendation approach to generate personalized study partner suggestions.',
+        'Features include study group management, task tracking, attendance monitoring, and group health evaluation.',
+        'Built using React, Spring Boot, PostgreSQL, and JWT Authentication.'
+      ],
+      tech: ['React', 'Vite', 'Tailwind CSS', 'Spring Boot', 'PostgreSQL', 'JWT', 'REST APIs'],
+      image: buddytostudyImg,
+      github: 'https://github.com/deepikadevaraj421/fullstack_Buddy_to_study.git',
+      live: 'https://buddy-to-study.onrender.com',
+      architecture: {
+        title: 'Buddy To Study Architecture',
+        steps: [
+          { name: 'React Frontend', desc: 'Interactive UI for study group and task management.', type: 'web' },
+          { name: 'Recommendation Engine', desc: 'Behavioral clustering and hybrid matching algorithm.', type: 'ai' },
+          { name: 'Spring Boot Backend', desc: 'RESTful APIs managing users, attendance, and study tasks.', type: 'web' },
+          { name: 'PostgreSQL Database', desc: 'Relational data management for attributes and groups.', type: 'cloud' }
         ]
       }
     }

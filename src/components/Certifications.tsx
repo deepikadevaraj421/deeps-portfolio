@@ -16,19 +16,19 @@ export default function Certifications() {
       name: 'AWS Certified Cloud Practitioner',
       org: 'Amazon Web Services',
       year: '2026',
-      link: 'https://www.credly.com/earner/earned/badge/0c929467-af0b-4940-91dc-316506dd4a33'
+      link: 'https://www.credly.com/badges/9b830ce8-80bc-48a9-a0cf-5e5d16635577/public_url'
     },
     {
-      domain: 'Salesforce',
-      name: 'Agentforce Specialist',
-      org: 'Salesforce',
+      domain: 'Computer Applications',
+      name: 'Honour Diploma in Computer Application(HDCA)',
+      org: 'CSC',
       year: '2026',
-      link: 'https://trailheadacademy.salesforce.com/my-learning/certifications/past'
+      link: ''
     },
     {
       domain: 'Programming',
-      name: 'C & C++ Training',
-      org: 'IIT Bombay',
+      name: 'NPTEL Java',
+      org: 'NPTEL',
       year: '2025',
       link: ''
     },
@@ -40,10 +40,10 @@ export default function Certifications() {
       link: ''
     },
     {
-      domain: 'Programming',
-      name: 'C Program for Beginners',
-      org: 'Great Learning',
-      year: '2025',
+      domain: 'Design',
+      name: 'NPTEL Design Thinking',
+      org: 'NPTEL',
+      year: '2026',
       link: ''
     },
     {

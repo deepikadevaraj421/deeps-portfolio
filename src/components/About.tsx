@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import profileImg from '../assets/portfoliopic.jpeg';
+import profileImg from '../assets/deepika_profile.jpg';
 
 export default function About() {
   // Mouse position inside the card for 3D tilt effect
@@ -51,7 +51,7 @@ export default function About() {
             
             <div className="space-y-6 text-sm sm:text-base text-warmgray leading-relaxed font-sans">
               <p>
-                I am <strong className="text-charcoal font-semibold">Kanimozhi R</strong>, a Computer Science (AI & ML) student at Sri Eshwar College of Engineering with a strong passion for Artificial Intelligence, Cloud Computing, Full-Stack Development, and MLOps.
+                I am <strong className="text-charcoal font-semibold">Deepika D</strong>, a Computer Science (AI & ML) student at Sri Eshwar College of Engineering with a strong passion for Artificial Intelligence, Cloud Computing, Full-Stack Development, and MLOps.
               </p>
               <p>
                 My journey spans developing AI-powered healthcare platforms, sign language accessibility systems, and scalable web applications. Through hands-on experience with MERN Stack, AWS Cloud, and Machine Learning technologies, I enjoy building solutions that bridge innovation and real-world impact.
@@ -112,7 +112,7 @@ export default function About() {
                 <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white z-10 flex items-center justify-center p-1.5">
                   <img
                     src={profileImg}
-                    alt="Kanimozhi R"
+                    alt="Deepika D"
                     className="w-full h-full object-cover rounded-[14px] grayscale group-hover:grayscale-0 transition-all duration-700 ease-out scale-100 group-hover:scale-[1.05]"
                   />
                   {/* Subtle dark gradient overlay */}
@@ -120,7 +120,7 @@ export default function About() {
                   
                   {/* Luxury Floating Tag */}
                   <div className="absolute bottom-6 left-6 right-6 glass py-3 px-4 rounded-xl border border-white/40 shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-20">
-                    <p className="font-heading text-xs font-semibold text-charcoal tracking-widest uppercase">Kanimozhi R</p>
+                    <p className="font-heading text-xs font-semibold text-charcoal tracking-widest uppercase">Deepika D</p>
                     <p className="text-[10px] text-warmgray mt-0.5 font-medium">Sri Eshwar College of Engineering</p>
                   </div>
                 </div>

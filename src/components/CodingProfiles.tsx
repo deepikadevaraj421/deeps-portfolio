@@ -23,7 +23,7 @@ function AnimatedCounter({ value, duration = 1.5, suffix = '' }: CounterProps) {
 
     const totalMiliseconds = duration * 1000;
     const incrementTime = Math.max(Math.floor(totalMiliseconds / end), 12);
-    
+
     const timer = setInterval(() => {
       start += Math.ceil(end / (totalMiliseconds / incrementTime));
       if (start >= end) {
@@ -49,7 +49,7 @@ export default function CodingProfiles() {
   const profiles = [
     {
       platform: 'Skillrack',
-      url: 'https://www.skillrack.com/profile/442656/cbe22aiml014',
+      url: 'https://www.skillrack.com/faces/resume.xhtml?id=514613&key=d37a2840d750a7a3dd172ca5b3f84f54989cc5b2',
       icon: (
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -57,27 +57,27 @@ export default function CodingProfiles() {
         </svg>
       ),
       metrics: [
-        { label: 'Problems Solved', value: 850, suffix: '+' },
-        { label: 'Certificates', value: 11, suffix: '' }
+        { label: 'Problems Solved', value: 1195, suffix: '+' },
+        { label: 'Certificates', value: 13, suffix: '' }
       ],
       description: 'Active platform solver in basic programming, logic constructs, and engineering test-suites.'
     },
     {
       platform: 'LeetCode',
-      url: 'https://leetcode.com/u/Kanimozhi_R/',
+      url: 'https://leetcode.com/u/Deepika413/',
       icon: (
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
           <path d="M13.483 0a1.374 1.374 0 0 0-.961.414l-2.697 2.607a1.372 1.372 0 0 0-.007 1.948l2.697 2.607c.466.45 1.08.697 1.728.697a2.4 2.4 0 0 0 1.728-.697l2.697-2.607c.466-.45.693-1.09.627-1.769a1.375 1.375 0 0 0-.96-1.529l-3.66-1.94a.78.78 0 0 1-.34-.693c0-.285.139-.544.385-.69l3.5-2.07c.533-.28 1-.84 1.066-1.52.066-.68-.16-1.32-.627-1.77zM12 2.44a.75.75 0 0 1-1.077-.689l-9.141 4.97a1.5 1.5 0 0 1-.782 1.31v10.518c0 .524.277 1.007.729 1.272l9.141 5.378a.75.75 0 0 1 1.13-.647V15c0-.414-.336-.75-.75-.75h-3.328a.75.75 0 0 1 0 1.5h2.578v5.828l-7.791-4.582V8.349l7.791-4.237V6.75c0 .414.336.75.75.75h3.328a.75.75 0 0 1 0-1.5H12V2.44z" />
         </svg>
       ),
       metrics: [
-        { label: 'Problems Solved', value: 100, suffix: '+' }
+        { label: 'Problems Solved', value: 150, suffix: '+' }
       ],
       description: 'Solving data structures, algorithm complexities, array dynamics, and graph logic problems.'
     },
     {
       platform: 'CodeChef',
-      url: 'https://www.codechef.com/users/kanimozhi_r',
+      url: 'https://www.codechef.com/users/deepika_413',
       icon: (
         <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
@@ -85,21 +85,23 @@ export default function CodingProfiles() {
         </svg>
       ),
       metrics: [
-        { label: 'Problems Solved', value: 50, suffix: '+' }
+        { label: 'Problems Solved', value: 245, suffix: '+' }
       ],
       badge: 'Bronze Badge',
       description: 'Participating in structured coding contests and solving key algorithmic questions.'
     },
     {
       platform: 'HackerRank',
-      url: 'https://www.hackerrank.com/profile/kanimozhi_r',
+      url: 'https://www.hackerrank.com/profile/deepika_d2024ai1',
       icon: (
         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
           <path d="M22 6.136h-4.364V1.773A1.773 1.773 0 0 0 15.864 0H8.136a1.773 1.773 0 0 0-1.772 1.773v4.363H2A2 2 0 0 0 0 8.136v13.864A2 2 0 0 0 2 24h20a2 2 0 0 0 2-2V8.136a2 2 0 0 0-2-2zM8.136 1.773h7.728v4.363H8.136V1.773zm13.864 20.454H2V8.136h20v14.091z" />
         </svg>
       ),
       metrics: [
-        { label: 'Java Proficiency', value: 1, suffix: ' Star' }
+        { label: 'C Language', value: 3, suffix: ' Star' },
+        { label: 'Java', value: 1, suffix: ' Star' },
+        { label: 'Python', value: 1, suffix: ' Star' }
       ],
       description: 'Demonstrating core object-oriented knowledge, functional testing, and syntax structures.'
     }
@@ -108,7 +110,7 @@ export default function CodingProfiles() {
   return (
     <section id="coding-profiles" className="py-24 sm:py-32 w-full bg-white overflow-hidden border-b border-bordercolor">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-xs font-semibold tracking-widest text-gold uppercase mb-3 block">

@@ -47,8 +47,8 @@ export default function Contact() {
           from_name: formData.name,
           reply_to: formData.email,
           message: formData.message,
-          to_name: 'Kanimozhi',
-          to_email: 'kanimozhi.r2024aiml@sece.ac.in'
+          to_name: 'Deepika D',
+          to_email: 'deepika.d2024aiml@sece.ac.in'
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
@@ -106,7 +106,7 @@ export default function Contact() {
             {/* Cards */}
             <div className="space-y-4">
               <a 
-                href="mailto:kanimozhi.r2024aiml@sece.ac.in"
+                href="mailto:deepika.d2024aiml@sece.ac.in"
                 className="flex items-center space-x-4 p-5 rounded-2xl bg-ivory/40 border border-bordercolor hover:border-gold/30 hover:bg-white hover:shadow-lg hover:shadow-gold/5 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-gold">
@@ -114,12 +114,12 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[10px] font-bold text-warmgray uppercase tracking-wider">Email Me</p>
-                  <p className="text-xs sm:text-sm font-bold text-charcoal break-all">kanimozhi.r2024aiml@sece.ac.in</p>
+                  <p className="text-xs sm:text-sm font-bold text-charcoal break-all">deepika.d2024aiml@sece.ac.in</p>
                 </div>
               </a>
 
               <a 
-                href="tel:+916383365448"
+                href="tel:+919360306340"
                 className="flex items-center space-x-4 p-5 rounded-2xl bg-ivory/40 border border-bordercolor hover:border-gold/30 hover:bg-white hover:shadow-lg hover:shadow-gold/5 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-gold">
@@ -127,7 +127,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[10px] font-bold text-warmgray uppercase tracking-wider">Call Me</p>
-                  <p className="text-xs sm:text-sm font-bold text-charcoal">+91 6383365448</p>
+                  <p className="text-xs sm:text-sm font-bold text-charcoal">+91 9360306340</p>
                 </div>
               </a>
             </div>
@@ -137,7 +137,7 @@ export default function Contact() {
               <p className="text-xs font-bold text-warmgray uppercase tracking-wider mb-4">Connect Online</p>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://www.linkedin.com/in/kani03/"
+                  href="https://www.linkedin.com/in/deepika-devaraj-2172a831a/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 px-5 py-3 rounded-xl border border-bordercolor text-xs font-bold uppercase tracking-wider text-charcoal hover:bg-gold/10 hover:border-gold/30 hover:text-gold transition-all duration-300 bg-white"
@@ -150,7 +150,7 @@ export default function Contact() {
                   <span>LinkedIn</span>
                 </a>
                 <a
-                  href="https://github.com/kanimozhi2630"
+                  href="https://github.com/deepikadevaraj421"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 px-5 py-3 rounded-xl border border-bordercolor text-xs font-bold uppercase tracking-wider text-charcoal hover:bg-gold/10 hover:border-gold/30 hover:text-gold transition-all duration-300 bg-white"
@@ -161,8 +161,8 @@ export default function Contact() {
                   <span>GitHub</span>
                 </a>
                 <a
-                  href="/KANIMOZHI_RESUME.pdf"
-                  download="KANIMOZHI_RESUME.pdf"
+                  href="/Deepika_Resume.pdf"
+                  download="Deepika_Resume.pdf"
                   className="flex items-center space-x-2 px-5 py-3 rounded-xl border border-bordercolor text-xs font-bold uppercase tracking-wider text-charcoal hover:bg-gold/10 hover:border-gold/30 hover:text-gold transition-all duration-300 bg-white"
                 >
                   <FileText size={14} />

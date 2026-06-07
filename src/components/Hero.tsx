@@ -193,7 +193,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.15 }}
           className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-charcoal mb-4"
         >
-          Hi, I'm <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-charcoal via-gold to-charcoal">Kanimozhi R</span>
+          Hi, I'm <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-charcoal via-gold to-charcoal">Deepika D</span>
         </motion.h1>
 
         {/* Animated Typewriter Subheading */}
@@ -240,8 +240,8 @@ export default function Hero() {
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
           <a
-            href="resume/Kanimozhi_R_Resume.pdf"
-            download
+            href="/Deepika_Resume.pdf"
+            download="Deepika_Resume.pdf"
             className="group flex items-center justify-center space-x-2 bg-white/60 text-charcoal hover:bg-gold/10 border border-bordercolor/60 transition-all duration-300 px-8 py-4 rounded-full font-medium tracking-wider text-sm uppercase shadow-sm backdrop-blur-md"
           >
             <Download size={16} />
@@ -257,7 +257,7 @@ export default function Hero() {
           className="flex items-center space-x-6 sm:space-x-8"
         >
           <a
-            href="https://www.linkedin.com/in/kani03/"
+            href="https://www.linkedin.com/in/deepika-devaraj-2172a831a/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-warmgray hover:text-gold transition-colors duration-300"
@@ -270,7 +270,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="https://github.com/kanimozhi2630"
+            href="https://github.com/deepikadevaraj421"
             target="_blank"
             rel="noopener noreferrer"
             className="text-warmgray hover:text-gold transition-colors duration-300"
@@ -281,7 +281,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="https://leetcode.com/u/Kanimozhi_R/"
+            href="https://leetcode.com/u/Deepika413/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-warmgray hover:text-gold transition-colors duration-300"
@@ -293,7 +293,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="https://www.skillrack.com/profile/442656/cbe22aiml014"
+            href="https://www.skillrack.com/faces/resume.xhtml?id=514613&key=d37a2840d750a7a3dd172ca5b3f84f54989cc5b2"
             target="_blank"
             rel="noopener noreferrer"
             className="text-warmgray hover:text-gold transition-colors duration-300"
@@ -309,7 +309,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="mailto:kanimozhi.r2024aiml@sece.ac.in"
+            href="mailto:deepika.d2024aiml@sece.ac.in"
             className="text-warmgray hover:text-gold transition-colors duration-300"
             title="Email"
           >

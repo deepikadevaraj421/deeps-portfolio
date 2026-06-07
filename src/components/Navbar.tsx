@@ -94,8 +94,8 @@ export default function Navbar({ activeSection }: NavbarProps) {
           {/* Right Connect Button */}
           <div className="flex items-center flex-shrink-0 space-x-2 sm:space-x-3">
             <a
-              href="resume/Kanimozhi_R_Resume.pdf"
-              download
+              href="/Deepika_Resume.pdf"
+              download="Deepika_Resume.pdf"
               className="group hidden sm:flex items-center space-x-1 rounded-full bg-white/60 text-charcoal hover:bg-gold/10 transition-all duration-300 px-4 py-1.5 sm:px-4 sm:py-2 text-xs font-semibold tracking-wider uppercase border border-bordercolor/60 hover:border-gold shadow-sm backdrop-blur-md"
             >
               <span>Resume</span>
