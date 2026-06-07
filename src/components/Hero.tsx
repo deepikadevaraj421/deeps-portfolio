@@ -309,7 +309,7 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href="mailto:deepika.d2024aiml@sece.ac.in"
+            href="mailto:deepikadevaraj413@gmail.com"
             className="text-warmgray hover:text-gold transition-colors duration-300"
             title="Email"
           >

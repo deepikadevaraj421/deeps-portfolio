@@ -48,7 +48,7 @@ export default function Contact() {
           reply_to: formData.email,
           message: formData.message,
           to_name: 'Deepika D',
-          to_email: 'deepika.d2024aiml@sece.ac.in'
+          to_email: 'deepikadevaraj413@gmail.com'
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
@@ -106,7 +106,7 @@ export default function Contact() {
             {/* Cards */}
             <div className="space-y-4">
               <a 
-                href="mailto:deepika.d2024aiml@sece.ac.in"
+                href="mailto:deepikadevaraj413@gmail.com"
                 className="flex items-center space-x-4 p-5 rounded-2xl bg-ivory/40 border border-bordercolor hover:border-gold/30 hover:bg-white hover:shadow-lg hover:shadow-gold/5 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-gold">
@@ -114,7 +114,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[10px] font-bold text-warmgray uppercase tracking-wider">Email Me</p>
-                  <p className="text-xs sm:text-sm font-bold text-charcoal break-all">deepika.d2024aiml@sece.ac.in</p>
+                  <p className="text-xs sm:text-sm font-bold text-charcoal break-all">deepikadevaraj413@gmail.com</p>
                 </div>
               </a>
 
