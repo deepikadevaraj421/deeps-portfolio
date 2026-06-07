@@ -162,7 +162,8 @@ export default function Contact() {
                 </a>
                 <a
                   href="/Deepika_Resume.pdf"
-                  download="Deepika_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center space-x-2 px-5 py-3 rounded-xl border border-bordercolor text-xs font-bold uppercase tracking-wider text-charcoal hover:bg-gold/10 hover:border-gold/30 hover:text-gold transition-all duration-300 bg-white"
                 >
                   <FileText size={14} />

@@ -158,7 +158,7 @@ export default function Certifications() {
                         <ExternalLink size={12} />
                       </a>
                     ) : (
-                      <span className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl border border-bordercolor text-xs font-semibold text-warmgray bg-ivory/20 cursor-not-allowed">
+                      <span className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl border border-bordercolor text-xs font-semibold text-warmgray bg-ivory/20 cursor-not-allowed whitespace-nowrap">
                         <span>Available Upon Request</span>
                       </span>
                     )}
