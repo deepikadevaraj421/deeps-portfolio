@@ -49,7 +49,7 @@ export default function EngineeringEvolution() {
     {
       phase: 'Phase 07',
       title: 'AWS Certified Cloud Practitioner',
-      desc: 'Earned professional certification scoring 820/1000.',
+      desc: 'Earned professional certification scoring 967/1000.',
       icon: <Cloud className="w-4 h-4 text-gold" />
     },
     {
@@ -61,7 +61,7 @@ export default function EngineeringEvolution() {
     {
       phase: 'Phase 09',
       title: 'Building Real-World AI Solutions',
-      desc: 'Developed Signify (Sign language converter) and Life Trax (Health management platform).',
+      desc: 'Developed Signify (Sign language converter), Life Trax (Health management platform) and IntelSOS (Road Safety Alert System).',
       icon: <Cpu className="w-4 h-4 text-charcoal" />
     },
     {
