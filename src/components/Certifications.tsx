@@ -22,7 +22,7 @@ export default function Certifications() {
       domain: 'Computer Applications',
       name: 'Honour Diploma in Computer Application(HDCA)',
       org: 'CSC',
-      year: '2026',
+      year: '2024',
       link: ''
     },
     {
@@ -88,7 +88,7 @@ export default function Certifications() {
   return (
     <section id="certifications" className="py-24 sm:py-32 w-full bg-ivory overflow-hidden border-b border-bordercolor">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        
+
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold tracking-widest text-gold uppercase mb-3 block">
@@ -116,8 +116,8 @@ export default function Certifications() {
             </thead>
             <tbody>
               {certificationsList.map((cert, index) => (
-                <tr 
-                  key={index} 
+                <tr
+                  key={index}
                   className="border-b border-bordercolor last:border-0 hover:bg-ivory/20 transition-colors duration-200"
                 >
                   {/* Domain tag */}
