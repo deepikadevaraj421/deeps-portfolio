@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, ArrowRight, X, Cpu } from 'lucide-react';
 import signifyImg from '../assets/signify_new.png';
 import lifetraxImg from '../assets/project_lifetrax.jpeg';
-import expenseImg from '../assets/project_expense.jpeg';
+
 import quizCortexImg from '../assets/quizcortex.png';
 import roadsosImg from '../assets/project_roadsos.jpeg';
 import buddytostudyImg from '../assets/buddytostudy.png';
