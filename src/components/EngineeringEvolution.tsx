@@ -37,7 +37,7 @@ export default function EngineeringEvolution() {
     {
       phase: 'Phase 05',
       title: 'MERN Stack Development',
-      desc: 'Built full-stack web applications.',
+      desc: 'Built a quiz application(QuizCortex) using MongoDB,ExpressJS,React and NodeJS.',
       icon: <Globe className="w-4 h-4 text-gold" />
     },
     {
