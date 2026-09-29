@@ -33,7 +33,7 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left Side: Bio Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -48,7 +48,7 @@ export default function About() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-charcoal mb-8 leading-tight font-heading">
               Engineering Intelligent Solutions with AI, Cloud & MLOps
             </h2>
-            
+
             <div className="space-y-6 text-sm sm:text-base text-warmgray leading-relaxed font-sans">
               <p>
                 I am <strong className="text-charcoal font-semibold">Deepika D</strong>, a Computer Science (AI & ML) student at Sri Eshwar College of Engineering with a strong passion for Artificial Intelligence, Cloud Computing, Full-Stack Development, and MLOps.
@@ -73,7 +73,7 @@ export default function About() {
               </div>
               <div>
                 <p className="font-heading text-2xl font-bold text-charcoal">Internship</p>
-                <p className="text-xs text-warmgray">MERN Developer</p>
+                <p className="text-xs text-warmgray">MERN, MLOps</p>
               </div>
             </div>
           </motion.div>
@@ -87,8 +87,8 @@ export default function About() {
             className="lg:col-span-5 flex justify-center items-center"
           >
             {/* Perspective wrapper for 3D tilt */}
-            <div 
-              style={{ perspective: 1000 }} 
+            <div
+              style={{ perspective: 1000 }}
               className="relative w-72 sm:w-80 md:w-96 aspect-[4/5] flex items-center justify-center"
             >
               <motion.div
@@ -117,7 +117,7 @@ export default function About() {
                   />
                   {/* Subtle dark gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   {/* Luxury Floating Tag */}
                   <div className="absolute bottom-6 left-6 right-6 glass py-3 px-4 rounded-xl border border-white/40 shadow-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-20">
                     <p className="font-heading text-xs font-semibold text-charcoal tracking-widest uppercase">Deepika D</p>
