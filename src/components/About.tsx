@@ -61,11 +61,41 @@ export default function About() {
               </p>
             </div>
 
+            {/* Interactive Tech Focus Chips */}
+            <div className="pt-6">
+              <span className="text-[10px] font-bold tracking-widest text-warmgray uppercase mb-3 block">
+                Primary Domains & Tooling
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { name: 'AWS Cloud', role: 'Cloud Infrastructure' },
+                  { name: 'Docker & K8s', role: 'Containers & Orchestration' },
+                  { name: 'MLOps & CI/CD', role: 'Automated Pipelines' },
+                  { name: 'Python & AI/ML', role: 'Intelligent Systems' },
+                  { name: 'MERN Full-Stack', role: 'Web Applications' },
+                ].map((item) => (
+                  <div
+                    key={item.name}
+                    className="group/chip relative px-3 py-1.5 rounded-xl bg-ivory hover:bg-charcoal text-charcoal hover:text-white border border-bordercolor hover:border-charcoal transition-all duration-300 text-xs font-semibold cursor-pointer shadow-sm"
+                  >
+                    <span className="flex items-center space-x-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold group-hover/chip:scale-125 transition-transform" />
+                      <span>{item.name}</span>
+                    </span>
+                    {/* Floating Context Tooltip */}
+                    <span className="absolute -top-7 left-1/2 -translate-x-1/2 bg-charcoal text-white text-[9px] font-medium tracking-wide px-2 py-0.5 rounded shadow-md opacity-0 group-hover/chip:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-30 border border-gold/30">
+                      {item.role}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* Micro stats banner for extra recruiter appeal */}
-            <div className="grid grid-cols-3 gap-6 pt-10 border-t border-bordercolor mt-10">
+            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-bordercolor mt-8">
               <div>
-                <p className="font-heading text-2xl font-bold text-charcoal">GPA</p>
-                <p className="text-xs text-warmgray">8.4+ / 10</p>
+                <p className="font-heading text-2xl font-bold text-charcoal">CGPA</p>
+                <p className="text-xs text-warmgray">8.26 / 10</p>
               </div>
               <div>
                 <p className="font-heading text-2xl font-bold text-charcoal">AWS</p>

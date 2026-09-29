@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import { ExternalLink, Cloud, ShieldCheck, Code, Award, CheckCircle } from 'lucide-react';
+import InteractiveCard from './ui/InteractiveCard';
 
 interface Certification {
   domain: string;
@@ -19,38 +19,38 @@ export default function Certifications() {
       link: 'https://www.credly.com/badges/9b830ce8-80bc-48a9-a0cf-5e5d16635577/public_url'
     },
     {
+      domain: 'Programming',
+      name: 'Certificate For The Completion Of C & C++ Training',
+      org: 'IIT BOMBAY',
+      year: '2025',
+      link: ''
+    },
+    {
       domain: 'Computer Applications',
-      name: 'Honour Diploma in Computer Application(HDCA)',
+      name: 'Honour Diploma in Computer Application (HDCA)',
       org: 'CSC',
       year: '2024',
       link: ''
     },
     {
-      domain: 'Programming',
-      name: 'NPTEL Java',
-      org: 'NPTEL',
-      year: '2025',
-      link: ''
-    },
-    {
       domain: 'DSA',
-      name: 'Mastering Data Structures & Algorithms',
+      name: 'Mastering Data Structures & Algorithm using C and C++',
       org: 'Udemy',
       year: '2025',
       link: ''
     },
     {
-      domain: 'Design',
-      name: 'NPTEL Design Thinking',
+      domain: 'Programming',
+      name: 'Java Certification',
       org: 'NPTEL',
       year: '2026',
       link: ''
     },
     {
-      domain: 'Programming',
-      name: 'Introduction to C',
-      org: 'SoloLearn',
-      year: '2025',
+      domain: 'Design',
+      name: 'Design Thinking',
+      org: 'NPTEL',
+      year: '2026',
       link: ''
     }
   ];
@@ -172,12 +172,11 @@ export default function Certifications() {
         {/* Card list layout for mobile screens */}
         <div className="md:hidden space-y-4 max-w-md mx-auto">
           {certificationsList.map((cert, index) => (
-            <motion.div
+            <InteractiveCard
               key={index}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="p-5 rounded-2xl bg-white border border-bordercolor flex flex-col space-y-4"
+              scaleHover={1.02}
+              liftHover={-4}
+              className="p-5 rounded-2xl bg-white border border-bordercolor flex flex-col space-y-4 transition-all duration-300"
             >
               <div className="flex items-center justify-between">
                 <span className={`inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${getDomainStyle(cert.domain)}`}>
@@ -205,7 +204,7 @@ export default function Certifications() {
                   <span>Credential Available Upon Request</span>
                 </span>
               )}
-            </motion.div>
+            </InteractiveCard>
           ))}
         </div>
 

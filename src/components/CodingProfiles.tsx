@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Award, ExternalLink } from 'lucide-react';
+import InteractiveCard from './ui/InteractiveCard';
 
 interface CounterProps {
   value: number;
@@ -133,55 +134,61 @@ export default function CodingProfiles() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.12 }}
-              className="group relative flex flex-col justify-between bg-ivory/40 hover:bg-white rounded-3xl border border-bordercolor p-8 hover:border-gold/50 hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 hover:-translate-y-1.5"
+              className="h-full"
             >
-              <div>
-                {/* Platform Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-charcoal group-hover:text-gold transition-colors duration-300 group-hover:border-gold/20 shadow-sm">
-                    {profile.icon}
+              <InteractiveCard
+                scaleHover={1.03}
+                liftHover={-7}
+                className="group relative flex flex-col justify-between h-full bg-ivory/40 hover:bg-white rounded-3xl border p-8"
+              >
+                <div>
+                  {/* Platform Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-charcoal group-hover:text-gold transition-all duration-300 group-hover:scale-110 group-hover:border-gold/30 shadow-sm">
+                      {profile.icon}
+                    </div>
+                    <a
+                      href={profile.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full border border-transparent hover:border-bordercolor hover:text-gold text-warmgray hover:bg-ivory/50 transition-all duration-300"
+                      title={`Open ${profile.platform} profile`}
+                    >
+                      <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
                   </div>
-                  <a
-                    href={profile.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-full border border-transparent hover:border-bordercolor hover:text-gold text-warmgray hover:bg-ivory/50 transition-all duration-300"
-                    title={`Open ${profile.platform} profile`}
-                  >
-                    <ExternalLink size={14} />
-                  </a>
+
+                  {/* Platform Name */}
+                  <h3 className="font-heading text-lg font-bold text-charcoal mb-4">
+                    {profile.platform}
+                  </h3>
+
+                  {/* Counters */}
+                  <div className="space-y-4 mb-6">
+                    {profile.metrics.map((metric, index) => (
+                      <div key={index} className="flex flex-col">
+                        <AnimatedCounter value={metric.value} suffix={metric.suffix} />
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-warmgray mt-1">
+                          {metric.label}
+                        </span>
+                      </div>
+                    ))}
+
+                    {/* Extra custom status badges */}
+                    {profile.badge && (
+                      <div className="inline-flex items-center space-x-1 px-2.5 py-1 rounded bg-gold/10 text-gold border border-gold/20 text-[10px] font-bold uppercase tracking-wider">
+                        <Award size={10} />
+                        <span>{profile.badge}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                {/* Platform Name */}
-                <h3 className="font-heading text-lg font-bold text-charcoal mb-4">
-                  {profile.platform}
-                </h3>
-
-                {/* Counters */}
-                <div className="space-y-4 mb-6">
-                  {profile.metrics.map((metric, index) => (
-                    <div key={index} className="flex flex-col">
-                      <AnimatedCounter value={metric.value} suffix={metric.suffix} />
-                      <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-warmgray mt-1">
-                        {metric.label}
-                      </span>
-                    </div>
-                  ))}
-
-                  {/* Extra custom status badges */}
-                  {profile.badge && (
-                    <div className="inline-flex items-center space-x-1 px-2.5 py-1 rounded bg-gold/10 text-gold border border-gold/20 text-[10px] font-bold uppercase tracking-wider">
-                      <Award size={10} />
-                      <span>{profile.badge}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Description */}
-              <p className="text-xs text-warmgray leading-relaxed border-t border-bordercolor/60 pt-4 mt-auto">
-                {profile.description}
-              </p>
+                {/* Description */}
+                <p className="text-xs text-warmgray leading-relaxed border-t border-bordercolor/60 pt-4 mt-auto">
+                  {profile.description}
+                </p>
+              </InteractiveCard>
             </motion.div>
           ))}
         </div>

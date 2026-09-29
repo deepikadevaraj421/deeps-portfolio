@@ -10,6 +10,8 @@ import Certifications from './components/Certifications';
 import CodingProfiles from './components/CodingProfiles';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
+import ScrollProgress from './components/ui/ScrollProgress';
+import CustomCursor from './components/ui/CustomCursor';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -99,6 +101,11 @@ export default function App() {
       {/* Main Portfolio Layout */}
       {!loading && (
         <div className="min-h-screen flex flex-col justify-between select-text selection:bg-gold/30 selection:text-charcoal relative">
+          {/* Subtle 2px Scroll Progress Bar */}
+          <ScrollProgress />
+
+          {/* Minimal Interactive Custom Cursor */}
+          <CustomCursor />
           
           {/* Active section tracker navbar */}
           <Navbar activeSection={activeSection} />

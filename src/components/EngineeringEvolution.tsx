@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Terminal, Award, Briefcase, Globe, Cpu, Cloud, Code } from 'lucide-react';
 
 interface TimelineEvent {
@@ -9,6 +10,19 @@ interface TimelineEvent {
 }
 
 export default function EngineeringEvolution() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 80%', 'end 70%'],
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 25,
+    restDelta: 0.001,
+  });
+
   const events: TimelineEvent[] = [
     {
       phase: 'Phase 01',
@@ -37,7 +51,7 @@ export default function EngineeringEvolution() {
     {
       phase: 'Phase 05',
       title: 'MERN Stack Development',
-      desc: 'Built a quiz application(QuizCortex) using MongoDB,ExpressJS,React and NodeJS.',
+      desc: 'Built a quiz application (QuizCortex) using MongoDB, ExpressJS, React and NodeJS.',
       icon: <Globe className="w-4 h-4 text-gold" />
     },
     {
@@ -73,7 +87,7 @@ export default function EngineeringEvolution() {
     {
       phase: 'Phase 11',
       title: 'MLOps Internship',
-      desc: 'Mastered DevOps basics including Git, GitHub, Docker, Linux, CI/CD, Kubernetes, and end-to-end MLOps workflows.',
+      desc: 'Mastered DevOps basics including Git, GitHub, Docker, Linux, CI/CD, Kubernetes, and end-to-end MLOps workflows at Aptitude Guru.',
       icon: <Briefcase className="w-4 h-4 text-gold" />
     },
   ];
@@ -96,9 +110,15 @@ export default function EngineeringEvolution() {
         </div>
 
         {/* Timeline Layout */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Central Vertical Line (Desktop) or Left Line (Mobile) */}
-          <div className="absolute left-[20px] md:left-1/2 top-2 bottom-2 w-[2px] bg-gradient-to-b from-gold/20 via-gold to-gold/20 -translate-x-1/2" />
+        <div ref={containerRef} className="relative max-w-5xl mx-auto">
+          {/* Static Background Rail (Desktop center, Mobile left) */}
+          <div className="absolute left-[20px] md:left-1/2 top-4 bottom-4 w-[2px] bg-bordercolor/60 -translate-x-1/2" />
+
+          {/* Dynamic Animated Glowing Scroll Beam */}
+          <motion.div
+            style={{ scaleY }}
+            className="absolute left-[20px] md:left-1/2 top-4 bottom-4 w-[2.5px] bg-gradient-to-b from-gold via-[#E2CDAE] to-gold -translate-x-1/2 origin-top z-10"
+          />
 
           {/* Events list */}
           <div className="space-y-12">
@@ -107,8 +127,9 @@ export default function EngineeringEvolution() {
               return (
                 <div
                   key={event.phase}
-                  className={`flex flex-col md:flex-row items-stretch ${isEven ? 'md:flex-row-reverse' : ''
-                    } relative w-full`}
+                  className={`flex flex-col md:flex-row items-stretch ${
+                    isEven ? 'md:flex-row-reverse' : ''
+                  } relative w-full`}
                 >
                   {/* Left spacing for centering (Desktop only) */}
                   <div className="hidden md:block w-1/2" />
@@ -116,25 +137,25 @@ export default function EngineeringEvolution() {
                   {/* Connector Node */}
                   <div className="absolute left-[20px] md:left-1/2 top-6 -translate-x-1/2 z-20 flex items-center justify-center">
                     <motion.div
-                      whileHover={{ scale: 1.3 }}
-                      className="w-9 h-9 rounded-full bg-white border-2 border-gold flex items-center justify-center shadow-lg shadow-gold/10 relative cursor-pointer"
+                      whileHover={{ scale: 1.25 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                      className="w-9 h-9 rounded-full bg-white border-2 border-gold flex items-center justify-center shadow-md shadow-gold/20 relative cursor-pointer group"
                     >
                       {event.icon}
-                      {/* Pulse Ring */}
-                      <span className="absolute inset-0 rounded-full border border-gold/40 animate-ping opacity-60 pointer-events-none" />
+                      {/* Interactive Pulse Ring */}
+                      <span className="absolute inset-0 rounded-full border border-gold/40 animate-ping opacity-50 pointer-events-none group-hover:opacity-100" />
                     </motion.div>
                   </div>
 
                   {/* Content Card */}
                   <motion.div
-                    initial={{ opacity: 0, x: isEven ? 40 : -40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
+                    initial={{ opacity: 0, x: isEven ? 30 : -30, y: 15 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
                     className="w-full md:w-1/2 pl-12 md:pl-0 md:px-10"
                   >
-                    <div className="relative group p-6 sm:p-8 rounded-3xl bg-ivory/50 border border-bordercolor hover:border-gold/30 hover:bg-white hover:shadow-xl hover:shadow-gold/5 transition-all duration-300">
-
+                    <div className="relative group p-6 sm:p-8 rounded-3xl bg-ivory/50 border border-bordercolor hover:border-gold/40 hover:bg-white hover:shadow-xl hover:shadow-gold/5 hover:-translate-y-1 transition-all duration-300">
                       {/* Phase Label */}
                       <span className="text-[10px] font-bold tracking-widest text-gold uppercase mb-2 block font-heading">
                         {event.phase}
@@ -149,7 +170,6 @@ export default function EngineeringEvolution() {
                       <p className="text-xs sm:text-sm text-warmgray leading-relaxed font-sans">
                         {event.desc}
                       </p>
-
                     </div>
                   </motion.div>
                 </div>
@@ -162,3 +182,4 @@ export default function EngineeringEvolution() {
     </section>
   );
 }
+

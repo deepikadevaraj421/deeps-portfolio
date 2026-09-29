@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ArrowRight, X, Cpu, Play, RotateCcw } from 'lucide-react';
+import { ExternalLink, ArrowRight, X, Cpu } from 'lucide-react';
+import InteractiveCard from './ui/InteractiveCard';
 import signifyImg from '../assets/signify_new.png';
 import lifetraxImg from '../assets/project_lifetrax.jpeg';
 import quizCortexImg from '../assets/quizcortex.png';
@@ -46,20 +47,18 @@ function ProjectCardMedia({ project, activeVideoId, setActiveVideoId }: ProjectC
     }
   }, [activeVideoId, project.id, isPlaying]);
 
-  const handleTogglePlay = (e: React.MouseEvent | React.TouchEvent) => {
-    e.stopPropagation();
+  const startVideo = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (isPlaying) {
-      video.pause();
-      setIsPlaying(false);
-    } else {
-      if (hasEnded || video.ended) {
-        video.currentTime = 0;
-        setHasEnded(false);
-      }
+    if (hasEnded || video.ended) {
+      video.currentTime = 0;
+      setHasEnded(false);
+    }
+
+    if (!isPlaying) {
       setActiveVideoId(project.id);
+      video.muted = true;
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise
@@ -68,17 +67,27 @@ function ProjectCardMedia({ project, activeVideoId, setActiveVideoId }: ProjectC
             setHasEnded(false);
           })
           .catch((err) => {
-            console.warn('Audio playback restricted, falling back to muted video play:', err);
-            video.muted = true;
-            video
-              .play()
-              .then(() => {
-                setIsPlaying(true);
-                setHasEnded(false);
-              })
-              .catch((playErr) => console.error('Video playback error:', playErr));
+            console.warn('Playback notice:', err);
           });
       }
+    }
+  };
+
+  const handlePointerEnter = () => {
+    startVideo();
+  };
+
+  const handleToggleOrReplay = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (hasEnded || video.ended) {
+      video.currentTime = 0;
+      setHasEnded(false);
+      startVideo();
+    } else if (!isPlaying) {
+      startVideo();
     }
   };
 
@@ -112,14 +121,15 @@ function ProjectCardMedia({ project, activeVideoId, setActiveVideoId }: ProjectC
 
   return (
     <div
-      onClick={handleTogglePlay}
+      onMouseEnter={handlePointerEnter}
+      onClick={handleToggleOrReplay}
       role="button"
       tabIndex={0}
-      aria-label={`${isPlaying ? 'Pause' : hasEnded ? 'Replay' : 'Play'} demo video for ${project.title}`}
+      aria-label={`Interactive video preview for ${project.title}`}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          handleTogglePlay(e as unknown as React.MouseEvent);
+          handleToggleOrReplay(e as unknown as React.MouseEvent);
         }
       }}
       className="relative aspect-[16/10] w-full overflow-hidden bg-black/90 border-b border-bordercolor cursor-pointer select-none group/media focus:outline-none"
@@ -128,40 +138,34 @@ function ProjectCardMedia({ project, activeVideoId, setActiveVideoId }: ProjectC
         ref={videoRef}
         src={project.video}
         poster={project.poster || project.image}
+        muted
         playsInline
         preload="metadata"
         onEnded={handleEnded}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover transition-transform duration-500 group-hover/media:scale-[1.02]"
       />
 
-      {/* Subtle Play / Replay Overlay Icon - Disappears while video is actively playing */}
+      {/* Subtle Interactive Status Badge in Top Right */}
       <div
-        className={`absolute inset-0 flex items-center justify-center transition-all duration-300 pointer-events-none ${
-          isPlaying ? 'opacity-0 scale-95' : 'opacity-100 bg-black/25 group-hover/media:bg-black/15'
-        }`}
+        className="absolute top-3 right-3 z-10 pointer-events-none transition-opacity duration-300"
       >
-        <div className="w-12 h-12 rounded-full bg-charcoal/85 text-white flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md group-hover/media:scale-110 group-hover/media:bg-gold transition-all duration-300">
-          {hasEnded ? (
-            <RotateCcw size={18} className="text-white" />
-          ) : (
-            <Play size={18} className="text-white fill-white translate-x-0.5" />
-          )}
-        </div>
-      </div>
-
-      {/* Subtle Demo Status Badge in Top Right */}
-      <div
-        className={`absolute top-3 right-3 z-10 transition-opacity duration-300 pointer-events-none ${
-          isPlaying ? 'opacity-0' : 'opacity-100'
-        }`}
-      >
-        <span className="glass text-[9px] font-bold tracking-wider text-charcoal px-2.5 py-0.5 rounded-full border border-white/50 uppercase flex items-center gap-1.5 shadow-sm">
-          <Play size={8} className="fill-gold text-gold" />
-          {hasEnded ? 'Replay' : 'Live Demo'}
+        <span className="glass text-[9px] font-bold tracking-wider text-charcoal px-2.5 py-1 rounded-full border border-white/50 uppercase flex items-center gap-1.5 shadow-sm backdrop-blur-md">
+          <span
+            className={`w-1.5 h-1.5 rounded-full ${
+              isPlaying
+                ? 'bg-emerald-500 animate-pulse'
+                : hasEnded
+                ? 'bg-gold'
+                : 'bg-warmgray'
+            }`}
+          />
+          <span>
+            {isPlaying ? 'Live Demo' : hasEnded ? 'Replay Demo' : 'Hover to Play'}
+          </span>
         </span>
       </div>
 
-      {/* Tech Badges on Media - Fades out during playback for clear visibility */}
+      {/* Tech Badges on Media - Fades out during active playback for clean visibility */}
       <div
         className={`absolute bottom-4 left-4 flex flex-wrap gap-2 transition-opacity duration-300 pointer-events-none ${
           isPlaying ? 'opacity-0' : 'opacity-100'
@@ -170,7 +174,7 @@ function ProjectCardMedia({ project, activeVideoId, setActiveVideoId }: ProjectC
         {project.tech.slice(0, 2).map((t) => (
           <span
             key={t}
-            className="glass text-[10px] font-semibold tracking-wider text-charcoal px-2.5 py-1 rounded-md border border-white/40 uppercase"
+            className="glass text-[10px] font-semibold tracking-wider text-charcoal px-2.5 py-1 rounded-md border border-white/40 uppercase backdrop-blur-sm"
           >
             {t}
           </span>
@@ -183,6 +187,21 @@ function ProjectCardMedia({ project, activeVideoId, setActiveVideoId }: ProjectC
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+
+  // Close modal on Escape key and prevent background scroll
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedProject(null);
+    };
+    if (selectedProject) {
+      document.addEventListener('keydown', handleKey);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      document.body.style.overflow = '';
+    };
+  }, [selectedProject]);
 
   const projectsList: Project[] = [
     {
@@ -486,89 +505,98 @@ export default function Projects() {
           {projectsList.map((project, idx) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="group flex flex-col h-full bg-white rounded-3xl border border-bordercolor overflow-hidden hover:border-gold/50 transition-all duration-500 hover:shadow-xl hover:shadow-gold/5 hover:-translate-y-2"
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="h-full"
             >
-              {/* Project Video / Media Area */}
-              <ProjectCardMedia
-                project={project}
-                activeVideoId={activeVideoId}
-                setActiveVideoId={setActiveVideoId}
-              />
-
-              {/* Card Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <span className="text-[10px] font-semibold tracking-[0.2em] text-gold uppercase mb-1.5 block">
-                  {project.subtitle}
-                </span>
-                <h3 className="text-xl font-bold text-charcoal mb-3 font-heading group-hover:text-gold transition-colors duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-warmgray leading-relaxed mb-6 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Tech stack complete list */}
-                <div className="flex flex-wrap gap-1.5 mb-6 mt-auto">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-[10px] font-medium text-charcoal/70 bg-ivory px-2 py-0.5 rounded border border-bordercolor/60"
-                    >
-                      {t}
-                    </span>
-                  ))}
+              <InteractiveCard
+                onClick={() => setSelectedProject(project)}
+                scaleHover={1.025}
+                liftHover={-7}
+                className="flex flex-col h-full bg-white rounded-3xl border overflow-hidden cursor-pointer"
+              >
+                {/* Project Video / Media Area */}
+                <div className="overflow-hidden">
+                  <ProjectCardMedia
+                    project={project}
+                    activeVideoId={activeVideoId}
+                    setActiveVideoId={setActiveVideoId}
+                  />
                 </div>
 
-                {/* Card Actions */}
-                <div className="grid grid-cols-3 gap-2 border-t border-bordercolor/50 pt-4 mt-auto">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="flex items-center justify-center space-x-1.5 py-2 px-1 text-xs font-semibold uppercase tracking-wider text-charcoal hover:text-gold transition-colors duration-300 border border-transparent rounded-lg hover:bg-ivory"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="13"
-                      height="13"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="inline-block"
+                {/* Card Content */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <span className="text-[10px] font-semibold tracking-[0.2em] text-gold uppercase mb-1.5 block">
+                    {project.subtitle}
+                  </span>
+                  <h3 className="text-xl font-bold text-charcoal mb-3 font-heading group-hover:text-gold transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-warmgray leading-relaxed mb-6 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {/* Tech stack complete list */}
+                  <div className="flex flex-wrap gap-1.5 mb-6 mt-auto">
+                    {project.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[10px] font-medium text-charcoal/70 bg-ivory px-2 py-0.5 rounded border border-bordercolor/60 group-hover:border-gold/30 transition-colors"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Card Actions */}
+                  <div className="grid grid-cols-3 gap-2 border-t border-bordercolor/50 pt-4 mt-auto">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex items-center justify-center space-x-1.5 py-2 px-1 text-xs font-semibold uppercase tracking-wider text-charcoal hover:text-gold transition-colors duration-300 border border-transparent rounded-lg hover:bg-ivory"
                     >
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                    </svg>
-                    <span className="text-[10px]">GitHub</span>
-                  </a>
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="flex items-center justify-center space-x-1.5 py-2 px-1 text-xs font-semibold uppercase tracking-wider text-charcoal hover:text-gold transition-colors duration-300 border border-transparent rounded-lg hover:bg-ivory"
-                  >
-                    <ExternalLink size={13} />
-                    <span className="text-[10px]">Live</span>
-                  </a>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedProject(project);
-                    }}
-                    className="flex items-center justify-center space-x-1 py-2 px-1 text-xs font-semibold uppercase tracking-wider text-white bg-charcoal hover:bg-gold transition-all duration-300 rounded-lg"
-                  >
-                    <span className="text-[10px]">Detail</span>
-                    <ArrowRight size={11} />
-                  </button>
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="13"
+                        height="13"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="inline-block"
+                      >
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                      </svg>
+                      <span className="text-[10px]">GitHub</span>
+                    </a>
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="flex items-center justify-center space-x-1.5 py-2 px-1 text-xs font-semibold uppercase tracking-wider text-charcoal hover:text-gold transition-colors duration-300 border border-transparent rounded-lg hover:bg-ivory"
+                    >
+                      <ExternalLink size={13} />
+                      <span className="text-[10px]">Live</span>
+                    </a>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedProject(project);
+                      }}
+                      className="group/btn flex items-center justify-center space-x-1 py-2 px-1 text-xs font-semibold uppercase tracking-wider text-white bg-charcoal hover:bg-gold hover:text-charcoal transition-all duration-300 rounded-lg shadow-sm"
+                    >
+                      <span className="text-[10px]">Detail</span>
+                      <ArrowRight size={11} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                    </button>
+                  </div>
                 </div>
-              </div>
+              </InteractiveCard>
             </motion.div>
           ))}
         </div>
@@ -584,21 +612,22 @@ export default function Projects() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="absolute inset-0 bg-charcoal/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-charcoal/60 backdrop-blur-md"
             />
 
             {/* Modal Body */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.98, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: 'spring', duration: 0.5 }}
+              exit={{ opacity: 0, scale: 0.98, y: 15 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="relative w-full max-w-3xl max-h-[85vh] bg-white rounded-3xl border border-bordercolor shadow-2xl overflow-y-auto z-10 no-scrollbar"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-6 right-6 z-20 p-2 rounded-full bg-ivory text-charcoal hover:text-gold border border-bordercolor hover:shadow transition-all duration-300"
+                className="absolute top-6 right-6 z-20 p-2 rounded-full bg-white/90 text-charcoal hover:text-gold hover:bg-white border border-bordercolor shadow-md hover:scale-105 transition-all duration-300"
+                aria-label="Close project modal"
               >
                 <X size={16} />
               </button>

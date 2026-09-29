@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, X } from 'lucide-react';
+import InteractiveCard from './ui/InteractiveCard';
 
 interface Achievement {
   title: string;
@@ -131,67 +132,73 @@ export default function Achievements() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="group relative flex flex-col rounded-2xl bg-white border border-bordercolor overflow-hidden hover:shadow-xl hover:shadow-gold/8 hover:-translate-y-1 transition-all duration-300"
+              className="h-full"
             >
-              {/* Large Image Area */}
-              <button
-                type="button"
-                onClick={() => openLightbox(item.image)}
-                className="relative w-full overflow-hidden cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 bg-[#f5f4f2]"
-                aria-label={`View ${item.title} image in full size`}
+              <InteractiveCard
+                scaleHover={1.025}
+                liftHover={-7}
+                className="group relative flex flex-col h-full rounded-2xl bg-white border overflow-hidden"
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  className="w-full transition-transform duration-500 group-hover:scale-[1.03]"
-                  style={{
-                    display: 'block',
-                    maxHeight: '280px',
-                    objectFit: 'contain',
-                    objectPosition: 'center',
-                    margin: '0 auto',
-                  }}
-                />
-                {/* Hover overlay */}
-                <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/10 transition-colors duration-300 flex items-center justify-center">
-                  <span className="text-white text-xs font-semibold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-charcoal/60 px-4 py-2 rounded-full backdrop-blur-sm">
-                    Click to enlarge
-                  </span>
-                </div>
-              </button>
-
-              {/* Content Area */}
-              <div className="flex flex-col flex-1 p-5 sm:p-6">
-                {/* Category Tag */}
-                <span className="text-[10px] font-bold tracking-[0.15em] text-gold uppercase mb-2">
-                  {item.category}
-                </span>
-
-                {/* Title */}
-                <h3 className="font-heading text-base sm:text-lg font-bold text-charcoal mb-2 leading-snug group-hover:text-gold-hover transition-colors duration-300">
-                  {item.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-warmgray leading-relaxed mb-4 flex-1">
-                  {item.description}
-                </p>
-
-                {/* LinkedIn Proof Button */}
-                <a
-                  href={item.linkedIn}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-charcoal/70 hover:text-gold transition-colors duration-200 group/link w-fit"
+                {/* Large Image Area */}
+                <button
+                  type="button"
+                  onClick={() => openLightbox(item.image)}
+                  className="relative w-full overflow-hidden cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 bg-[#f5f4f2]"
+                  aria-label={`View ${item.title} image in full size`}
                 >
-                  <span>View LinkedIn Post</span>
-                  <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                </a>
-              </div>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    className="w-full transition-transform duration-500 group-hover:scale-[1.04]"
+                    style={{
+                      display: 'block',
+                      maxHeight: '280px',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                      margin: '0 auto',
+                    }}
+                  />
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/10 transition-colors duration-300 flex items-center justify-center">
+                    <span className="text-white text-xs font-semibold tracking-wider uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-charcoal/60 px-4 py-2 rounded-full backdrop-blur-sm">
+                      Click to enlarge
+                    </span>
+                  </div>
+                </button>
 
-              {/* Gold bottom accent on hover */}
-              <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                {/* Content Area */}
+                <div className="flex flex-col flex-1 p-5 sm:p-6">
+                  {/* Category Tag */}
+                  <span className="text-[10px] font-bold tracking-[0.15em] text-gold uppercase mb-2">
+                    {item.category}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="font-heading text-base sm:text-lg font-bold text-charcoal mb-2 leading-snug group-hover:text-gold-hover transition-colors duration-300">
+                    {item.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-warmgray leading-relaxed mb-4 flex-1">
+                    {item.description}
+                  </p>
+
+                  {/* LinkedIn Proof Button */}
+                  <a
+                    href={item.linkedIn}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-charcoal/70 hover:text-gold transition-colors duration-200 group/link w-fit"
+                  >
+                    <span>View LinkedIn Post</span>
+                    <ExternalLink className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                  </a>
+                </div>
+
+                {/* Gold bottom accent on hover */}
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </InteractiveCard>
             </motion.div>
           ))}
         </div>

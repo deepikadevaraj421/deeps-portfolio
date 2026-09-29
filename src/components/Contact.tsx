@@ -1,13 +1,23 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, FileText, Send, CheckCircle2, XCircle } from 'lucide-react';
+import { Mail, Phone, FileText, Send, CheckCircle2, XCircle, Copy, Check } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import InteractiveCard from './ui/InteractiveCard';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
   const [toastConfig, setToastConfig] = useState({ show: false, isError: false, title: '', message: '' });
   const [errors, setErrors] = useState({ name: '', email: '', message: '' });
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText('deepikadevaraj413@gmail.com');
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
 
   const validate = () => {
     let valid = true;
@@ -105,31 +115,67 @@ export default function Contact() {
             
             {/* Cards */}
             <div className="space-y-4">
-              <a 
-                href="mailto:deepikadevaraj413@gmail.com"
-                className="flex items-center space-x-4 p-5 rounded-2xl bg-ivory/40 border border-bordercolor hover:border-gold/30 hover:bg-white hover:shadow-lg hover:shadow-gold/5 transition-all duration-300"
+              <InteractiveCard 
+                scaleHover={1.02}
+                liftHover={-4}
+                className="group relative flex items-center justify-between p-5 rounded-2xl bg-ivory/40 border border-bordercolor hover:border-gold/40 hover:bg-white transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-gold">
-                  <Mail size={18} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-warmgray uppercase tracking-wider">Email Me</p>
-                  <p className="text-xs sm:text-sm font-bold text-charcoal break-all">deepikadevaraj413@gmail.com</p>
-                </div>
-              </a>
+                <a 
+                  href="mailto:deepikadevaraj413@gmail.com"
+                  className="flex items-center space-x-4 flex-1 min-w-0"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-gold group-hover:scale-105 transition-transform flex-shrink-0">
+                    <Mail size={18} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] font-bold text-warmgray uppercase tracking-wider">Email Me</p>
+                    <p className="text-xs sm:text-sm font-bold text-charcoal truncate">deepikadevaraj413@gmail.com</p>
+                  </div>
+                </a>
 
-              <a 
-                href="tel:+919360306340"
-                className="flex items-center space-x-4 p-5 rounded-2xl bg-ivory/40 border border-bordercolor hover:border-gold/30 hover:bg-white hover:shadow-lg hover:shadow-gold/5 transition-all duration-300"
+                {/* Copy Button */}
+                <button
+                  type="button"
+                  onClick={handleCopyEmail}
+                  className={`px-3 py-1.5 rounded-xl border text-[10px] font-bold uppercase tracking-wider transition-all duration-200 flex items-center space-x-1 flex-shrink-0 ml-2 ${
+                    copiedEmail
+                      ? 'bg-emerald-500 text-white border-emerald-500'
+                      : 'bg-white hover:bg-gold/10 text-charcoal border-bordercolor hover:border-gold'
+                  }`}
+                  title="Copy email to clipboard"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check size={12} />
+                      <span>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={12} />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </InteractiveCard>
+
+              <InteractiveCard
+                scaleHover={1.02}
+                liftHover={-4}
+                className="group rounded-2xl bg-ivory/40 border border-bordercolor hover:border-gold/40 hover:bg-white transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-gold">
-                  <Phone size={18} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-warmgray uppercase tracking-wider">Call Me</p>
-                  <p className="text-xs sm:text-sm font-bold text-charcoal">+91 9360306340</p>
-                </div>
-              </a>
+                <a 
+                  href="tel:+919360306340"
+                  className="flex items-center space-x-4 p-5 w-full"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white border border-bordercolor flex items-center justify-center text-gold group-hover:scale-105 transition-transform flex-shrink-0">
+                    <Phone size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold text-warmgray uppercase tracking-wider">Call Me</p>
+                    <p className="text-xs sm:text-sm font-bold text-charcoal">+91 9360306340</p>
+                  </div>
+                </a>
+              </InteractiveCard>
             </div>
 
             {/* Social Buttons */}
